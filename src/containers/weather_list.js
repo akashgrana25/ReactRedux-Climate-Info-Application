@@ -9,6 +9,8 @@ class WeatherList extends Component {
 
     const name =  cityData.city.name;
     const temps = cityData.list.map(weather => weather.main.temp);
+    const pressure = cityData.list.map(weather => weather.main.pressure);
+    const humidity = cityData.list.map(weather => weather.main.humidity);
     //console.log(name);
       return(
 
@@ -18,6 +20,19 @@ class WeatherList extends Component {
                <Sparklines width = {150} height = {180} data={temps}>
                 <SparklinesLine color = "red" />
                </Sparklines>
+
+            </td>
+             <td>
+               <Sparklines width = {150} height = {180} data={pressure}>
+                <SparklinesLine color = "green" />
+               </Sparklines>
+               
+            </td>
+             <td>
+               <Sparklines width = {150} height = {180} data={humidity}>
+                <SparklinesLine color = "blue" />
+               </Sparklines>
+               
             </td>
           </tr>
 
@@ -27,17 +42,14 @@ class WeatherList extends Component {
     render() {
         return (
           <table className = "table table-hover">
-            <thead>
               <tr>
                 <th>City</th>
                 <th>Temperature</th>
                 <th>Pressure</th>
                 <th>Humidity</th>
               </tr>
-            </thead>
-            <tbody>
+
               {this.props.weather.map(this.renderWeather)}
-            </tbody>
           </table>
         );
       }
